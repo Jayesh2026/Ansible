@@ -1,0 +1,21 @@
+---
+- name: This is simple HTML project
+  hosts: server
+  become: true
+
+  tasks:
+    - name: Install the nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Start the nginx service
+      service:
+        name: nginx
+        state: started
+        enabled: true
+    
+    - name: Deploy webpage
+      copy:
+        src: ../application/index.html
+        dest: /var/www/html
